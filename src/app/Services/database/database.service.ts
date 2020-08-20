@@ -51,7 +51,7 @@ export class DatabaseService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    
+    window.alert('incorrect city name');
     return throwError(errorMessage);
   }
 
