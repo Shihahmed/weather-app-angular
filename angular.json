@@ -117,8 +117,13 @@
               "devServerTarget": "weather-app-angular:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "weather-app-angular"
 }
