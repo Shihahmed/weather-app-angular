@@ -42,7 +42,12 @@ export class WeatherComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.getOneCallWeatherByCoords(position.coords.latitude, position.coords.longitude);
       });
-    } else {
+    } 
+
+    if(this.currentWeatherData == null){
+
+      this.getOneCallWeatherByCoords(42.8555011, 47.6239659);//Kaspiysk
+      
     }
   }
 
@@ -78,6 +83,7 @@ export class WeatherComponent implements OnInit {
       this.dailyWeatherData = dataBuffer.daily;
       this.mainWeatherIconId = dataBuffer.current.weather[0].icon;
       this.calculateSunPosition(dataBuffer.current?.sunrise, dataBuffer.current?.sunset, dataBuffer.current?.dt);
+
     });
 
   }
