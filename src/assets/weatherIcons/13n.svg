@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="37.013973mm"
-   height="40.353085mm"
-   viewBox="0 0 37.013973 40.353085"
+   width="38.734901mm"
+   height="31.083149mm"
+   viewBox="0 0 38.734901 31.08315"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
@@ -22,8 +22,8 @@
        sodipodi:type="inkscape:persp3d"
        inkscape:vp_x="0 : 15.893224 : 1"
        inkscape:vp_y="0 : 1000.0001 : 0"
-       inkscape:vp_z="57.730035 : 15.893221 : 1"
-       inkscape:persp3d-origin="28.865018 : 10.595482 : 1"
+       inkscape:vp_z="57.730032 : 15.893221 : 1"
+       inkscape:persp3d-origin="28.865016 : 10.595482 : 1"
        id="perspective5206" />
   </defs>
   <sodipodi:namedview
@@ -34,8 +34,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="110.93881"
-     inkscape:cy="77.773236"
+     inkscape:cx="106.61481"
+     inkscape:cy="24.35672"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -62,7 +62,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
-     transform="translate(-114.1205,-162.75852)">
+     transform="translate(-115.26456,-248.76697)">
     <g
        transform="translate(2.2478368,184.20416)"
        style="display:inline"
@@ -6444,5 +6444,5 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2"
-     transform="translate(-114.1205,-162.75852)" />
+     transform="translate(-115.26456,-248.76697)" />
 </svg>
