@@ -1,0 +1,92 @@
+<a class="logo" href="https://github.com/Shihahmed/weather-app-angular">
+  <img src="assets\weatherLogo.svg">
+</a>
+
+
+<app-search-input
+  (search)="getOneCallWeatherByCityName($event)">
+</app-search-input>
+
+
+<div class="sizeBox">
+
+</div>
+
+<div class="main-container">
+
+  <div class="left">
+    <h1 class="mainTemp">
+      {{(this.currentWeatherData?.temp).toFixed(0)}}°
+    </h1>
+    <h1 class="mainDescription">
+      {{this.currentWeatherData?.weather[0].main}}
+    </h1>
+    <img class="mainWeatherIcon" src='assets/weatherIcons/{{this.mainWeatherIconId}}.svg'/>
+  </div>
+
+  <div class="right">
+
+    <h3 class="sityName">{{this.cityName}}</h3>
+    <h3 class="currentDate">{{getDateFromRawDate(this.currentWeatherData?.dt) | date : 'dd.MM'}}</h3>
+    <app-sun-position
+      [sunriseTime]="this.getTimeFromRawDate(this.currentWeatherData?.sunrise)"
+      [currentTime]="this.getTimeFromRawDate(this.currentWeatherData?.dt)"
+      [sunsetTime]="this.getTimeFromRawDate(this.currentWeatherData?.sunset)">
+    </app-sun-position>
+
+    <!-- wether info -->
+    <div class="weatherInfo">
+
+      <div class="leftWeatherInfo">
+
+        <div class="weatherParameter">
+          <img class="infoIcons" src="assets/weatherInfoIcons/wind.svg"/>
+          <p class="infoText">{{degToCard(this.currentWeatherData?.wind_deg)}}
+            {{(this.currentWeatherData?.wind_speed * 3.6).toFixed(1)}} km/h
+          </p>
+        </div>
+
+        <div class="weatherParameter">
+          <img class="infoIcons" src="assets/weatherInfoIcons/hygrometer.svg"/>
+          <p class="infoText">{{this.currentWeatherData?.humidity}}%</p>
+        </div>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="rightWeatherInfo">
+
+        <div class="weatherParameter">
+          <img class="infoIcons" src="assets/weatherInfoIcons/uvi.svg"/>
+          <p class="infoText">{{this.currentWeatherData?.uvi}} uvi</p>
+        </div>
+
+        <div class="weatherParameter">
+          <img class="infoIcons" src="../../../assets/weatherInfoIcons/barometer.svg"/>
+          <p class="infoText">{{(this.currentWeatherData?.pressure * 0.75006375541921).toFixed(0)}} mmHg</p>
+        </div>
+
+      </div>
+
+    </div>
+    <!--     -->
+
+  </div>
+
+
+</div>
+
+<div class="sizeBox"></div>
+
+<!--  FORECAST   -->
+<div class="forecast">
+
+<app-day-card
+  *ngFor="let daily of dailyWeatherData"
+  [weather]= "daily">
+</app-day-card>
+
+</div>
+<div class="sizeBox"></div>
+<!--     -->

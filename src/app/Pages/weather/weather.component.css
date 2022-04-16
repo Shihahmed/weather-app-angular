@@ -1,0 +1,198 @@
+
+.sizeBox {
+  height: 50px;
+  margin: 0 auto;
+}
+
+.main-container {
+  display: flex;
+  height: 320px;
+  margin: 0 auto;
+  width: 640px;
+}
+
+@media (max-width: 767px) {
+  .main-container {
+    flex-direction: column;
+    height: 630px;
+    width: 320px;
+  }
+}
+
+.logo {
+  margin: 0 auto;
+  place-content: center;
+  display: flex;
+  position: relative;
+  padding: 20px;
+  height: 100px;
+  width: 100px;
+}
+
+.right {
+  background: white;
+  height: calc(100% - 40px);
+  top: 20px;
+  border-radius: 0 5% 5% 0;
+  position: relative;
+  width: 50%;
+
+  place-content: center;
+}
+
+@media (max-width: 767px) {
+  .right {
+    height: 100%;
+    left: 20px;
+    width: calc(100% - 40px);
+    max-height: 270px;
+    transform: translateY(-20px);
+
+    border-radius: 0 0 5% 5%;
+  }
+}
+
+.mainTemp {
+  font-size: 100px;
+  font-weight: 700;
+  margin: 0% 30%;
+  /*position: center;*/
+}
+
+.mainDescription {
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0% 30%;
+  text-align: center;
+}
+
+.mainWeatherIcon {
+  height: 120px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  padding-top: 10px;
+}
+
+
+.left {
+  background: #1f4e5d;
+  border-radius: 5%;
+  box-shadow: 0 0 40px 16px rgba(0, 0, 0, 0.22);
+  color: #F1F1F2;
+  position: relative;
+  place-content: center;
+  width: 50%;
+}
+
+@media (max-width: 767px) {
+  .left {
+    flex-shrink: 0;
+    height: 100%;
+    width: 100%;
+    max-height: 320px;
+  }
+}
+
+.form {
+  margin: 40px;
+  position: absolute;
+}
+
+/* weatherInfo */
+
+.sityName {
+
+  text-align: center;
+
+  font-weight: 300;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+.currentDate {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 auto;
+  margin-top: 2%;
+}
+
+.weatherInfo {
+
+
+  display: inline-flex;
+  height: 80px;
+  width: 40%;
+  text-align: center;
+
+  position: sticky;
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+
+@media (max-width: 767px) {
+  .weatherInfo {
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+
+.divider {
+  margin: 10px;
+  width: 0.2px;
+}
+
+.weatherParameter{
+  display: flex;
+  margin: 0 auto;
+}
+
+.infoIcons {
+  height: 20px;
+  width: 20px;
+  place-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.infoText {
+  font-size: 15px;
+  margin-left: 5px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* _weatherInfo */
+
+
+.forecast {
+  display: flex;
+  border-radius: 5%;
+  place-content: center;
+
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .forecast {
+    place-content: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 320px;
+
+  }
+}
+
+
+

@@ -3,16 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WeatherComponent } from './Components/weather/weather.component';
+import { WeatherComponent } from './Pages/weather/weather.component';
 import { DatabaseService } from './Services/database/database.service';
 
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SunPositionComponent } from './Pages/weather/sun-position/sun-position.component';
+import { SearchInputComponent } from './Pages/weather/search-input/search-input.component';
+import { DayCardComponent } from './Pages/weather/day-card/day-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent
+    WeatherComponent,
+    SunPositionComponent,
+    SearchInputComponent,
+    DayCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ 
+  providers: [
     DatabaseService,
   ],
   bootstrap: [AppComponent]

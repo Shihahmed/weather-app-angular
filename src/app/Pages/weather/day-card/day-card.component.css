@@ -1,0 +1,174 @@
+.day {
+  padding: 5px;
+  width: 120px;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .day {
+    display: flex;
+    flex-direction: row;
+    height: 130px;
+    width: 320px;
+
+
+  }
+}
+
+.dayDateContainer {
+
+  background: #1f4e5d;
+  border-radius: 5% 5% 0% 0%;
+  color: #F1F1F2;
+  place-content: center;
+  width: 120px;
+  height: 150px;
+}
+
+@media (max-width: 767px) {
+  .dayDateContainer {
+    border-radius: 5% 0 0 5%;
+    height: 130px;
+    width: 150px;
+    position: relative;
+    place-content: center;
+  }
+}
+
+.dailyDate {
+  padding-top: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .dailyDate {
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+.dailyTemp {
+
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .dailyTemp {
+    font-size: 12px;
+
+  }
+}
+
+.dailyDescription {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .dailyDescription {
+    font-size: 12px;
+  }
+}
+
+
+.dailyWeatherIcon {
+
+  height: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+
+}
+
+.dayInfoContainer {
+  background: #ffffff;;
+  border-radius: 0 0 5% 5%;
+  place-content: center;
+  width: 120px;
+  height: 200px;
+}
+
+@media (max-width: 767px) {
+  .dayInfoContainer {
+    border-radius: 0 5% 5% 0;
+
+    display: inline-flex;
+    height: 130px;
+    width: 320px;
+    text-align: center;
+
+    position: sticky;
+
+
+  }
+}
+
+
+.dailyRightWeatherInfo {
+  margin-left: 5px;
+}
+
+@media (max-width: 767px) {
+  .dailyRightWeatherInfo {
+    margin-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+.dailyLeftWeatherInfo {
+  margin-left: 5px;
+
+}
+
+@media (max-width: 767px) {
+  .dailyLeftWeatherInfo {
+    margin-right: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+.dailyDivider {
+  background: #bbb;
+  margin: 5px;
+  width: 0.2px;
+  height: 100%;
+}
+
+
+.dailyWindInfoText {
+  font-size: 15px;
+
+  margin: 0 auto;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.weatherParameter{
+  display: flex;
+  margin: 0 auto;
+}
+
+.infoIcons {
+  height: 20px;
+  width: 20px;
+  place-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.infoText {
+  font-size: 15px;
+  margin-left: 5px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}

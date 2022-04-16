@@ -1,0 +1,77 @@
+
+.search{
+  display: flex;
+  height: 50px;
+  margin: 0 auto;
+  color: #F1F1F2;
+  position: relative;
+  width: 350px;
+  max-width: 380px;
+
+  place-content: center;
+
+}
+
+.form-control{
+
+  /*box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);*/
+  border-radius: 50px 0 0 50px;
+  border:none;
+  /*display: column;*/
+  height: 45px;
+  margin: 0 auto;
+  background: #feffff;
+  padding-left: 15px;
+  color: black;
+  outline: none;
+  position: relative;
+  width: 300px;
+  max-width: 380px;
+
+
+  place-content: center;
+}
+@media (max-width: 767px) {
+  .form-control {
+    width: 200px;
+  }
+}
+
+
+.input {
+  background: transparent;
+  border: 0;
+  color: #f2f2f2;
+  font-size: 20px;
+  outline: none !important;
+}
+.input::-moz-focus-inner {
+  border: 0;
+}
+
+.btn-search {
+  height: 47px;
+  width: 47px;
+  border: none;
+  border-radius: 0 50px 50px 0 ;
+  outline: none;
+  background-color: #1f4e5d;
+  fill: #f2f2f2;
+  padding: 0.5em;
+  transition: color 300ms;
+  overflow: hidden;
+  cursor: pointer;
+
+}
+.btn-search > svg > path{
+  fill: #f2f2f2;
+  fill-opacity: 0.8;
+}
+.btn-search:focus  > svg > path {
+  fill: #f2f2f2;
+  fill-opacity: 0.8;
+}
+.btn-search:active > svg > path {
+  fill: #9595b6;
+  fill-opacity: 0.8;
+}

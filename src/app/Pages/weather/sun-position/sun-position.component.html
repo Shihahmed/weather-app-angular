@@ -1,0 +1,11 @@
+<svg class="sun" width="200" height="100" viewbox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+  <path id="sunPath" d="M20 60 C 60 10, 140 10, 180 60" stroke="black" fill="transparent"/>
+  <g id="sunEl">
+    <circle r="8"/>
+  </g>
+  <g class="text-fields">
+    <text id="sunrise">{{(sunriseTime | date : 'HH:mm')}}</text>
+    <text id="time">{{currentTime | date : 'HH:mm'}}</text>
+    <text id="sunset">{{sunsetTime | date : 'HH:mm'}}</text>
+  </g>
+</svg>
