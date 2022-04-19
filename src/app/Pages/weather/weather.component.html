@@ -26,7 +26,7 @@
 
   <div class="right">
 
-    <h3 class="sityName">{{this.cityName}}</h3>
+    <h3 class="cityName">{{this.cityName}}</h3>
     <h3 class="currentDate">{{getDateFromRawDate(this.currentWeatherData?.dt) | date : 'dd.MM'}}</h3>
     <app-sun-position
       [sunriseTime]="this.getTimeFromRawDate(this.currentWeatherData?.sunrise)"
@@ -34,7 +34,7 @@
       [sunsetTime]="this.getTimeFromRawDate(this.currentWeatherData?.sunset)">
     </app-sun-position>
 
-    <!-- wether info -->
+    <!-- weather info -->
     <div class="weatherInfo">
 
       <div class="leftWeatherInfo">
@@ -79,14 +79,12 @@
 
 <div class="sizeBox"></div>
 
-<!--  FORECAST   -->
 <div class="forecast">
 
-<app-day-card
-  *ngFor="let daily of dailyWeatherData"
-  [weather]= "daily">
-</app-day-card>
+  <app-day-card
+    *ngFor="let daily of dailyWeatherData"
+    [weather]="daily">
+  </app-day-card>
 
 </div>
 <div class="sizeBox"></div>
-<!--     -->
