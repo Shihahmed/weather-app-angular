@@ -32,11 +32,17 @@ export class SunPositionComponent implements OnChanges {
 
     const sunPosOnPath = sunPathL * dif;
 
-    // @ts-ignore
-    const point = sunPath.getPointAtLength(sunPosOnPath);
 
-    // @ts-ignore
-    document.getElementById('sunEl').style = 'transform: translate(' + point.x + 'px,' + point.y + 'px)';
+    const volume = parseFloat(sunPosOnPath.toString());
+    let point;
+    if (isFinite(volume)) {
+      // @ts-ignore
+      point = sunPath.getPointAtLength(volume);
+    }
+    if (point) {
+      // @ts-ignore
+      document.getElementById('sunEl').style = 'transform: translate(' + point.x + 'px,' + point.y + 'px)';
+    }
 
   }
 
