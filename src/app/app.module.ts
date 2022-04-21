@@ -4,13 +4,18 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './Pages/weather/weather.component';
-import { DatabaseService } from './Services/database/database.service';
+import { WeatherService } from './Services/weather/weather.service';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SunPositionComponent } from './Pages/weather/sun-position/sun-position.component';
 import { SearchInputComponent } from './Pages/weather/search-input/search-input.component';
 import { DayCardComponent } from './Pages/weather/day-card/day-card.component';
+// import {reducers} from './Store';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {WeatherEffects} from './Store/Effects/weather.effects';
+import {weatherReducer} from './Store/Reducers/weather.reducers';
 
 @NgModule({
   declarations: [
@@ -24,10 +29,12 @@ import { DayCardComponent } from './Pages/weather/day-card/day-card.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({weather: weatherReducer}),
+    EffectsModule.forRoot([WeatherEffects]),
   ],
   providers: [
-    DatabaseService,
+    WeatherService,
   ],
   bootstrap: [AppComponent]
 })

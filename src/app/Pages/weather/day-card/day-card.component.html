@@ -1,7 +1,7 @@
 <div class="day" >
 
   <div class="dayDateContainer">
-    <h1 class="dailyDate">{{getDateFromRawDate(weather?.dt) | date : 'dd.MM'}}</h1>
+    <h1 class="dailyDate">{{this.weatherService.getDateTimeFromRawDate(weather?.dt) | date : 'dd.MM'}}</h1>
     <h1 class="dailyTemp">
       {{(weather?.temp.max).toFixed(0)}}°/{{(weather?.temp.min).toFixed(0)}}°
     </h1>

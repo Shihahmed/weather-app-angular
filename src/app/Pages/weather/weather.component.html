@@ -4,7 +4,7 @@
 
 
 <app-search-input
-  (search)="getOneCallWeatherByCityName($event)">
+  (search)="loadWeatherByCityName($event)">
 </app-search-input>
 
 
@@ -15,7 +15,7 @@
 <div class="main-container">
 
   <div class="left">
-    <h1 class="mainTemp">
+    <h1 class="mainTemp" *ngIf="(weather$| async)">
       {{(this.currentWeatherData?.temp).toFixed(0)}}°
     </h1>
     <h1 class="mainDescription">
@@ -27,11 +27,11 @@
   <div class="right">
 
     <h3 class="cityName">{{this.cityName}}</h3>
-    <h3 class="currentDate">{{getDateFromRawDate(this.currentWeatherData?.dt) | date : 'dd.MM'}}</h3>
+    <h3 class="currentDate">{{this.weatherService.getDateTimeFromRawDate(this.currentWeatherData?.dt) | date : 'dd.MM'}}</h3>
     <app-sun-position
-      [sunriseTime]="this.getTimeFromRawDate(this.currentWeatherData?.sunrise)"
-      [currentTime]="this.getTimeFromRawDate(this.currentWeatherData?.dt)"
-      [sunsetTime]="this.getTimeFromRawDate(this.currentWeatherData?.sunset)">
+      [sunriseTime]="this.weatherService.getDateTimeFromRawDate(this.currentWeatherData?.sunrise)"
+      [currentTime]="this.weatherService.getDateTimeFromRawDate(this.currentWeatherData?.dt)"
+      [sunsetTime]="this.weatherService.getDateTimeFromRawDate(this.currentWeatherData?.sunset)">
     </app-sun-position>
 
     <!-- weather info -->
@@ -41,7 +41,7 @@
 
         <div class="weatherParameter">
           <img class="infoIcons" src="assets/weatherInfoIcons/wind.svg"/>
-          <p class="infoText">{{degToCard(this.currentWeatherData?.wind_deg)}}
+          <p class="infoText">{{this.weatherService.degToDirection(this.currentWeatherData?.wind_deg)}}
             {{(this.currentWeatherData?.wind_speed * 3.6).toFixed(1)}} km/h
           </p>
         </div>

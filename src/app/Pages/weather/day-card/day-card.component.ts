@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {WeatherService} from '../../../Services/weather/weather.service';
 
 @Component({
   selector: 'app-day-card',
@@ -9,15 +10,9 @@ export class DayCardComponent implements OnInit {
 
   @Input() weather;
 
-  constructor() { }
+  constructor(public weatherService: WeatherService) { }
 
   ngOnInit(): void {
-  }
-
-  getDateFromRawDate(time): Date {
-
-    return new Date(time * 1000);
-
   }
 
 }
