@@ -1,6 +1,7 @@
 # WeatherAppAngular
 
-simple weather app
-using [openweathermap](https://openweathermap.org/api/one-call-api) api
+Simple weather app with NgRx as state managment.
 
-hosted on FireBase: https://weather-app-angular-87867.web.app/
+Used [openweathermap](https://openweathermap.org/api/one-call-api) api
+
+Hosted on FireBase: https://weather-app-angular-87867.web.app/
