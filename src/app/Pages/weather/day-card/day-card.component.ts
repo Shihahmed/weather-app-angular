@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WeatherService} from '../../../Services/weather/weather.service';
+import {Weather} from '../../../Store/Models/Weather';
 
 @Component({
   selector: 'app-day-card',
@@ -8,7 +9,7 @@ import {WeatherService} from '../../../Services/weather/weather.service';
 })
 export class DayCardComponent implements OnInit {
 
-  @Input() weather;
+  @Input() weather: Weather;
 
   constructor(public weatherService: WeatherService) { }
 

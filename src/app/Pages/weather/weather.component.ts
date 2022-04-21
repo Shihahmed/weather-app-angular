@@ -4,31 +4,24 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {LoadWeatherByCityName, LoadWeatherByCoords} from '../../Store/Actions/weather.actions';
 import {AppState, selectWeather} from '../../Store';
-import {Current, WeatherFromOpenApi} from '../../Store/Models/WeatherFromOpenApi';
 import {Observable, Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Weather} from '../../Store/Models/Weather';
 
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
-export class WeatherComponent implements OnInit, OnDestroy {
+export class WeatherComponent implements OnInit {
 
-
-  public currentWeatherData: any;
-  public dailyWeatherData: any;
-  public cityName: string;
-
-  public weather$: Observable<WeatherFromOpenApi>;
-  public subscription: Subscription;
-
-  public mainWeatherIconId = '01d';
+  public weather$: Observable<Weather>;
 
   constructor(
-    public weatherService: WeatherService,
     private store: Store
   ) {
+
+    this.loadWeatherByCoords(42.8555011, 47.6239659); // Kaspiysk
 
     this.weather$ = this.store.select(selectWeather).pipe(
       map((value: any) => {
@@ -36,25 +29,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
       })
     );
 
-    this.subscription = this.weather$.subscribe((weather: WeatherFromOpenApi) => {
-      if (weather) {
-        this.currentWeatherData = weather.current;
-        this.cityName = weather.cityName;
-        this.dailyWeatherData = weather.daily;
-        this.mainWeatherIconId = weather.current.weather[0].icon;
-      }
-    });
-
-
   }
 
   ngOnInit(): void {
 
     this.loadWeatherByUserLocation();
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   loadWeatherByUserLocation(): void {
@@ -65,14 +44,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
       });
 
     }
-
-    if (this.currentWeatherData == null) {
-
-      this.loadWeatherByCoords(42.8555011, 47.6239659); // Kaspiysk
-
-    }
   }
-
 
   loadWeatherByCityName(cityName: string): void {
     this.store.dispatch(LoadWeatherByCityName({cityName}));

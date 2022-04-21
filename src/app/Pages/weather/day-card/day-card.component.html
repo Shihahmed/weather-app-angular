@@ -1,14 +1,14 @@
 <div class="day" >
 
   <div class="dayDateContainer">
-    <h1 class="dailyDate">{{this.weatherService.getDateTimeFromRawDate(weather?.dt) | date : 'dd.MM'}}</h1>
+    <h1 class="dailyDate">{{weather.date | date : 'dd.MM'}}</h1>
     <h1 class="dailyTemp">
-      {{(weather?.temp.max).toFixed(0)}}°/{{(weather?.temp.min).toFixed(0)}}°
+      {{weather.tempMax}}°/{{weather.tempMin}}°
     </h1>
     <h1 class="dailyDescription">
-      {{weather?.weather[0].main}}
+      {{weather.description}}
     </h1>
-    <img class="dailyWeatherIcon" src='assets/weatherIcons/{{weather?.weather[0].icon}}.svg'/>
+    <img class="dailyWeatherIcon" src='assets/weatherIcons/{{weather.iconCode}}.svg'/>
 
   </div>
 
@@ -20,13 +20,13 @@
       <div class="weatherParameter">
         <img class="infoIcons" src="assets/weatherInfoIcons/wind.svg" alt="wind"/>
         <p class="infoText">
-          {{(weather?.wind_speed * 3.6).toFixed(1)}} km/h
+          {{weather.windSpeed_kmh}} km/h
         </p>
       </div>
 
       <div class="weatherParameter">
         <img class="infoIcons" src="assets/weatherInfoIcons/hygrometer.svg" alt="hygrometer"/>
-        <p class="infoText">{{weather?.humidity}}%</p>
+        <p class="infoText">{{weather.humidity}}%</p>
       </div>
 
     </div>
@@ -36,12 +36,12 @@
 
       <div class="weatherParameter">
         <img class="infoIcons" src="assets/weatherInfoIcons/uvi.svg" alt="uvi"/>
-        <p class="infoText">{{weather?.uvi}} uvi</p>
+        <p class="infoText">{{weather.uvi}} uvi</p>
       </div>
 
       <div class="weatherParameter">
         <img class="infoIcons" src="assets/weatherInfoIcons/barometer.svg" alt="barometer"/>
-        <p class="infoText">{{(weather?.pressure * 0.75006375541921).toFixed(0)}} mmHg</p>
+        <p class="infoText">{{weather.pressure_mmHg }} mmHg</p>
       </div>
 
     </div>

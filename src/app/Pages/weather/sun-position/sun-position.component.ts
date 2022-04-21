@@ -20,7 +20,6 @@ export class SunPositionComponent implements OnChanges {
 
   setSunPosition(sunrise: Date, sunset: Date, curTime: Date): void {
 
-    // console.log('setSunPosition');
 
     const sunPath = document.getElementById('sunPath');
 

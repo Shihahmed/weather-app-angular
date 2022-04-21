@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, retry} from 'rxjs/operators';
-import {WeatherFromOpenApi} from '../../Store/Models/WeatherFromOpenApi';
+import {catchError, map, retry} from 'rxjs/operators';
 import {Weather} from '../../Store/Models/Weather';
 
 @Injectable({
@@ -19,39 +18,96 @@ export class WeatherService {
   constructor(private http: HttpClient) {
   }
 
-  getWeatherByCityName(city: string): Observable<any> {
+  getWeatherByCityName(city: string): Observable<Weather> {
     return this.http.get<any>(this.apiURL + 'weather?q=' + city + this.apiKey)
       .pipe(
-        retry(1),
+        map(value => {
+          return {
+            cityName: value.name,
+            lat: value.coord.lat,
+            lon: value.coord.lon
+          };
+        }),
+        retry(0),
         catchError(this.handleError)
       );
   }
 
-  getWeatherByCoords(lat, lon): Observable<any> {
-    return this.http.get<any>(this.apiURL + 'weather?' + 'lat=' + lat + '&lon=' + lon + this.apiKey)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
+  getWeatherByCoords(lat: number, lon: number): Observable<Weather> {
+    if (lat && lon) {
+      return this.http.get<any>(this.apiURL + 'weather?' + 'lat=' + lat + '&lon=' + lon + this.apiKey)
+        .pipe(
+          map(value => {
+            return {
+              cityName: value.name,
+              lat: value.coord.lat,
+              lon: value.coord.lon
+            };
+          }),
+          retry(0),
+          catchError(this.handleError)
+        );
+    }
+    return new Observable<Weather>(null);
   }
 
   // oneCallApi by city name not available
-  getOneCallWeatherByCoords(lat: number, lon: number): Observable<any> {
+  getOneCallWeatherByCoords(lat: number, lon: number): Observable<Weather> {
 
-    console.log(`getOneCallWeatherByCoords(${lat}, ${lon})`);
     if (lat && lon){
-      return this.http.get<any>(this.apiURL + `onecall?lat=${lat ?? ''}&lon=${lon ?? ''}&exclude=hourly,minutely&units=metric${this.apiKey ?? ''}`)
+      return this.http.get<Weather>(this.apiURL + `onecall?lat=${lat ?? ''}&lon=${lon ?? ''}&exclude=hourly,minutely&units=metric${this.apiKey ?? ''}`)
         .pipe(
-          retry(1),
-          // catchError(this.handleError)
+          map(value => {
+            return this.weatherFromOneApiCallToWeather(value);
+          }),
+          retry(0),
         );
     }
-    return new Observable<any>(null);
+    return new Observable<Weather>(null);
 
+  }
+
+  weatherFromOneApiCallToWeather(weatherFromOneApiCall: any): Weather {
+    return {
+      temp: weatherFromOneApiCall.current.temp.toFixed(0),
+      description: weatherFromOneApiCall.current.weather[0].main,
+      iconCode: weatherFromOneApiCall.current.weather[0].icon,
+      date: this.getDateTimeFromRawDate(weatherFromOneApiCall.current.dt),
+      sunriseDateTime: this.getDateTimeFromRawDate(weatherFromOneApiCall.current.sunrise),
+      sunsetDateTime: this.getDateTimeFromRawDate(weatherFromOneApiCall.current.sunset),
+      windDeg: weatherFromOneApiCall.current.wind_deg,
+      windDirection: this.degToDirection(weatherFromOneApiCall.current.wind_deg),
+      windSpeed_kmh: this.getWindSpeed_kmhFromRawWindSpeed(weatherFromOneApiCall.current.wind_speed),
+      humidity: weatherFromOneApiCall.current.humidity,
+      uvi: weatherFromOneApiCall.current.uvi,
+      pressure_mmHg: this.getPressure_mmHgFromRawPressure(weatherFromOneApiCall.current.pressure),
+      dailyWeather: weatherFromOneApiCall.daily.map((dailyWeather: any) => {
+        return {
+          date: this.getDateTimeFromRawDate(dailyWeather.dt),
+          tempMax: dailyWeather.temp.max.toFixed(0),
+          tempMin: dailyWeather.temp.min.toFixed(0),
+          description: dailyWeather.weather[0].main,
+          iconCode: dailyWeather.weather[0].icon,
+          windSpeed_kmh: this.getWindSpeed_kmhFromRawWindSpeed(dailyWeather.wind_speed ),
+          humidity: dailyWeather.humidity,
+          uvi: dailyWeather.uvi,
+          pressure_mmHg: this.getPressure_mmHgFromRawPressure(dailyWeather.pressure),
+        };
+      }),
+    };
   }
 
   getDateTimeFromRawDate(time: number): Date {
     return new Date(time * 1000);
+  }
+
+  getPressure_mmHgFromRawPressure(rawPressure: number): number {
+    return +(rawPressure * 0.75006375541921).toFixed(0);
+  }
+
+
+  getWindSpeed_kmhFromRawWindSpeed(rawWindSpeed: number): number {
+    return +(rawWindSpeed * 3.6).toFixed(1);
   }
 
   degToDirection(deg: number): string {

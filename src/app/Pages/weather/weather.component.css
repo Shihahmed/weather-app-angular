@@ -183,8 +183,18 @@
   width: 100%;
 }
 
+@media (max-width: 1025px) {
+  .forecast {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+  }
+}
+
 @media (max-width: 767px) {
   .forecast {
+    display: flex;
     place-content: center;
     flex-direction: column;
     margin-left: auto;

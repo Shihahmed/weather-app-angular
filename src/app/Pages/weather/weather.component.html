@@ -1,5 +1,5 @@
 <a class="logo" href="https://github.com/Shihahmed/weather-app-angular">
-  <img src="assets\weatherLogo.svg">
+  <img src="assets\weatherLogo.svg" alt="logo">
 </a>
 
 
@@ -16,55 +16,56 @@
 
   <div class="left">
     <h1 class="mainTemp" *ngIf="(weather$| async)">
-      {{(this.currentWeatherData?.temp).toFixed(0)}}°
+      {{(weather$ | async).temp}}°
     </h1>
-    <h1 class="mainDescription">
-      {{this.currentWeatherData?.weather[0].main}}
+    <h1 class="mainDescription" *ngIf="(weather$ | async)">
+      {{(weather$ | async).description}}
     </h1>
-    <img class="mainWeatherIcon" src='assets/weatherIcons/{{this.mainWeatherIconId}}.svg'/>
+    <img *ngIf="(weather$ | async)" class="mainWeatherIcon" src='assets/weatherIcons/{{(weather$ | async).iconCode}}.svg' alt="weatherIcon"/>
   </div>
 
   <div class="right">
 
-    <h3 class="cityName">{{this.cityName}}</h3>
-    <h3 class="currentDate">{{this.weatherService.getDateTimeFromRawDate(this.currentWeatherData?.dt) | date : 'dd.MM'}}</h3>
+    <h3 class="cityName" *ngIf="(weather$ | async)">{{(weather$ | async).cityName}}</h3>
+    <h3 class="currentDate" *ngIf="(weather$ | async)">{{(weather$ | async).date | date : 'dd.MM'}}</h3>
     <app-sun-position
-      [sunriseTime]="this.weatherService.getDateTimeFromRawDate(this.currentWeatherData?.sunrise)"
-      [currentTime]="this.weatherService.getDateTimeFromRawDate(this.currentWeatherData?.dt)"
-      [sunsetTime]="this.weatherService.getDateTimeFromRawDate(this.currentWeatherData?.sunset)">
+      *ngIf="(weather$ | async)"
+      [sunriseTime]="(weather$ | async).sunriseDateTime"
+      [currentTime]="(weather$ | async).date"
+      [sunsetTime]="(weather$ | async).sunsetDateTime">
     </app-sun-position>
 
     <!-- weather info -->
     <div class="weatherInfo">
 
-      <div class="leftWeatherInfo">
+      <div class="leftWeatherInfo" *ngIf="(weather$ | async)">
 
         <div class="weatherParameter">
           <img class="infoIcons" src="assets/weatherInfoIcons/wind.svg"/>
-          <p class="infoText">{{this.weatherService.degToDirection(this.currentWeatherData?.wind_deg)}}
-            {{(this.currentWeatherData?.wind_speed * 3.6).toFixed(1)}} km/h
+          <p class="infoText">{{(weather$ | async).windDirection}}
+            {{(weather$ | async).windDeg}} km/h
           </p>
         </div>
 
         <div class="weatherParameter">
           <img class="infoIcons" src="assets/weatherInfoIcons/hygrometer.svg"/>
-          <p class="infoText">{{this.currentWeatherData?.humidity}}%</p>
+          <p class="infoText">{{(weather$ | async).humidity}}%</p>
         </div>
 
       </div>
 
       <div class="divider"></div>
 
-      <div class="rightWeatherInfo">
+      <div class="rightWeatherInfo" *ngIf="(weather$ | async)">
 
         <div class="weatherParameter">
           <img class="infoIcons" src="assets/weatherInfoIcons/uvi.svg"/>
-          <p class="infoText">{{this.currentWeatherData?.uvi}} uvi</p>
+          <p class="infoText">{{(weather$ | async).uvi}} uvi</p>
         </div>
 
         <div class="weatherParameter">
           <img class="infoIcons" src="../../../assets/weatherInfoIcons/barometer.svg"/>
-          <p class="infoText">{{(this.currentWeatherData?.pressure * 0.75006375541921).toFixed(0)}} mmHg</p>
+          <p class="infoText">{{(weather$ | async).pressure_mmHg}} mmHg</p>
         </div>
 
       </div>
@@ -79,10 +80,10 @@
 
 <div class="sizeBox"></div>
 
-<div class="forecast">
+<div class="forecast"  *ngIf="(weather$ | async)">
 
   <app-day-card
-    *ngFor="let daily of dailyWeatherData"
+    *ngFor="let daily of (weather$ | async).dailyWeather"
     [weather]="daily">
   </app-day-card>
 
